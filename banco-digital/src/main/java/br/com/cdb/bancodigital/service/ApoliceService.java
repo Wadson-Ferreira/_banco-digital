@@ -90,7 +90,7 @@ public class ApoliceService {
                 + dto.getDiasAdicionais() + " dias.");
 
         cartaoRepository.save(cartao);
-        apolice = apoliceRepository.save(apolice);;
+        apolice = apoliceRepository.save(apolice);
 
         return apoliceMapper.toDto(apolice);
     }

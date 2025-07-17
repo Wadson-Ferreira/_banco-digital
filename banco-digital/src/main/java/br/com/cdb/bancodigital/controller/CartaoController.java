@@ -3,7 +3,6 @@ package br.com.cdb.bancodigital.controller;
 import br.com.cdb.bancodigital.dto.request.*;
 import br.com.cdb.bancodigital.dto.response.CartaoCreditoResponseDTO;
 import br.com.cdb.bancodigital.dto.response.CartaoDebitoResponseDTO;
-import br.com.cdb.bancodigital.entity.CartaoCredito;
 import br.com.cdb.bancodigital.service.CartaoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
