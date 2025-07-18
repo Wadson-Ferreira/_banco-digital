@@ -45,22 +45,18 @@ public class CartaoController {
                                                                          @Valid @RequestBody LimiteRequestDTO dto) {
         return ResponseEntity.ok(cartaoService.ajustarLimiteCredito(id, dto));
     }
-
     @PatchMapping("/{id}/limite-diario-debito")
     public ResponseEntity<CartaoDebitoResponseDTO> ajustarLimiteDiarioDebito(@PathVariable Long id,
                                                                              @Valid @RequestBody LimiteRequestDTO dto) {
         return ResponseEntity.ok(cartaoService.ajustarLimiteDiarioDebito(id, dto));
     }
-
     @PatchMapping("/{id}/cartao-debito-estado")
     public ResponseEntity<CartaoDebitoResponseDTO> alterarEstadoCartaoDebito (@PathVariable Long id,
                                                                               @Valid @RequestBody AlterarEstadoCartaoRequestDTO dto){
         return ResponseEntity.ok(cartaoService.alterarEstadoCD(id,dto));
     }
-
     @PatchMapping("/{id}/cartao-credito-estado")
-    public ResponseEntity<CartaoCreditoResponseDTO> alterarEstadoCartaoCredito (@PathVariable Long id,
-                                                                    @Valid @RequestBody AlterarEstadoCartaoRequestDTO dto){
+    public ResponseEntity<CartaoCreditoResponseDTO> alterarEstadoCartaoCredito (@PathVariable Long id, @Valid @RequestBody AlterarEstadoCartaoRequestDTO dto){
         return ResponseEntity.ok(cartaoService.alterarEstadoCC(id,dto));
     }
 
