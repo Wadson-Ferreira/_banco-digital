@@ -5,6 +5,7 @@ import br.com.cdb.bancodigital.dto.mapper.EnderecoMapper;
 import br.com.cdb.bancodigital.dto.request.EnderecoRequestDTO;
 import br.com.cdb.bancodigital.service.exception.BusinessException;
 import br.com.cdb.bancodigital.service.exception.ObjectNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -27,19 +28,30 @@ public class EnderecoService {
         }
 
         String url = "https://brasilapi.com.br/api/cep/v1/" + cepTratado;
+
+        BrasilApiCepDTO brasilApiDto;
         try {
-            BrasilApiCepDTO brasilApiDto = restTemplate.getForObject(url, BrasilApiCepDTO.class);
-
-            if (brasilApiDto == null) {
-                throw new ObjectNotFoundException("CEP não encontrado: " + cep);
+            brasilApiDto = restTemplate.getForObject(url, BrasilApiCepDTO.class);
+        } catch (HttpClientErrorException e) {
+            // se for 404, lançamos ObjectNotFound
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                throw new ObjectNotFoundException(
+                        "CEP não encontrado na base de dados externa: " + cep);
             }
-
-            return enderecoMapper.toEnderecoRequestDTO(brasilApiDto);
-
-        } catch (HttpClientErrorException.NotFound e) {
-            throw new ObjectNotFoundException("CEP não encontrado na base de dados externa: " + cep);
+            // para qualquer outro 4xx/5xx, transformamos em BusinessException
+            throw new BusinessException(
+                    "Não foi possível consultar o serviço de CEP. Tente novamente mais tarde.");
         } catch (Exception e) {
-            throw new BusinessException("Não foi possível consultar o serviço de CEP. Tente novamente mais tarde.");
+            throw new BusinessException(
+                    "Não foi possível consultar o serviço de CEP. Tente novamente mais tarde.");
         }
+
+        // null‑check fora do try
+        if (brasilApiDto == null) {
+            throw new ObjectNotFoundException("CEP não encontrado: " + cep);
+        }
+
+        return enderecoMapper.toEnderecoRequestDTO(brasilApiDto);
     }
+
 }

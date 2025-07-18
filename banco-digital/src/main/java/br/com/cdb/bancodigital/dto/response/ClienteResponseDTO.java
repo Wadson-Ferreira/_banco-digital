@@ -1,6 +1,6 @@
 package br.com.cdb.bancodigital.dto.response;
 
-import br.com.cdb.bancodigital.entity.enums.CategoriaClientes;
+import br.com.cdb.bancodigital.entity.enums.CategoriaCliente;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ public class ClienteResponseDTO {
     private String cpf;
     private String nome;
     private LocalDate dataNascimento;
-    private CategoriaClientes categoriaClientes;
+    private CategoriaCliente categoriaCliente;
     private EnderecoResponseDTO endereco;
     private List<ContaResponseDTO> contas;
 }

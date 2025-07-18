@@ -1,6 +1,6 @@
 package br.com.cdb.bancodigital.dto.request;
 
-import br.com.cdb.bancodigital.entity.enums.CategoriaClientes;
+import br.com.cdb.bancodigital.entity.enums.CategoriaCliente;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +14,7 @@ public class ClienteUpdateRequestDTO {
     private String nome;
 
     @NotNull(message = "Categoria do cliente é obrigatória.")
-    private CategoriaClientes categoriaClientes;
+    private CategoriaCliente categoriaCliente;
 
     @Valid
     @NotNull(message = "Endereço é obrigatório.")

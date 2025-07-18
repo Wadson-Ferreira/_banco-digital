@@ -49,10 +49,10 @@ public class ContaService {
 
         if (tipoConta == TipoConta.CORRENTE) {
             novaConta = new ContaCorrente(cliente);
-            ((ContaCorrente) novaConta).setTaxaManutencao(cliente.getCategoriaClientes().getTaxaManutencao());
+            ((ContaCorrente) novaConta).setTaxaManutencao(cliente.getCategoriaCliente().getTaxaManutencao());
         } else {
             novaConta = new ContaPoupanca(cliente);
-            ((ContaPoupanca) novaConta).setTaxaRendimentoAnual(cliente.getCategoriaClientes().getTaxaRendimento());
+            ((ContaPoupanca) novaConta).setTaxaRendimentoAnual(cliente.getCategoriaCliente().getTaxaRendimento());
         }
         novaConta.setAgencia(1001L);
         novaConta = contaRepository.save(novaConta);

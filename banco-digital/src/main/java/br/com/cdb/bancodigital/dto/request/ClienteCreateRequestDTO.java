@@ -1,6 +1,6 @@
 package br.com.cdb.bancodigital.dto.request;
 
-import br.com.cdb.bancodigital.entity.enums.CategoriaClientes;
+import br.com.cdb.bancodigital.entity.enums.CategoriaCliente;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
@@ -22,7 +22,7 @@ public class ClienteCreateRequestDTO {
     private LocalDate dataNascimento;
 
     @NotNull(message = "Categoria do cliente é obrigatória.")
-    private CategoriaClientes categoriaClientes;
+    private CategoriaCliente categoriaCliente;
 
     @NotNull(message = "Endereço é obrigatório.")
     private EnderecoRequestDTO endereco;

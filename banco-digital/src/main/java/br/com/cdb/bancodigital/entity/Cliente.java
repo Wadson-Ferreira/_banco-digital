@@ -1,6 +1,6 @@
 package br.com.cdb.bancodigital.entity;
 
-import br.com.cdb.bancodigital.entity.enums.CategoriaClientes;
+import br.com.cdb.bancodigital.entity.enums.CategoriaCliente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,7 +44,7 @@ public class Cliente {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "categoriaClientes", nullable = false, length = 20)
-    private CategoriaClientes categoriaClientes;
+    private CategoriaCliente categoriaCliente;
 
     @OneToMany(
             mappedBy = "cliente",
